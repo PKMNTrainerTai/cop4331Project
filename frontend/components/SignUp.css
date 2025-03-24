@@ -1,0 +1,78 @@
+
+.wrapper{
+    background: transparent;
+    border:2px solid black;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgb(218, 138, 218) ;
+    border-radius: 15px;
+    width: 420px;
+    color: white;
+    padding: 30px 40px;
+
+}
+
+.wrapper h1 {
+    text-align: center;
+    font-size: 50px;
+}
+
+.wrapper .input-box{
+    position: relative;
+    margin: 20px 0;
+    width: 100%;
+    height: 50px;
+
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    border-radius: 40px;
+    border: 2px solid black;
+    background: transparent;
+    padding: 20px 45px 20px 20px;
+    font-size:14px;
+    font-weight: bold;
+}
+
+.input-box input::placeholder{
+    color: white;
+}
+
+.input-box .icon{
+    position: relative;
+    left: 90%;
+    top: -35px
+}
+
+.wrapper button{
+    width:100%;
+    height:35px;
+    border:none;
+    outline:none;
+    border-radius: 40px;
+    border: 2px solid black;
+    cursor: pointer;
+    box-shadow: black;
+    font-size: 16px;
+    font-weight:800;
+}
+
+.wrapper button:hover{
+    background-color: aquamarine
+}
+
+.wrapper .existaccount{
+    text-align:center;
+    margin: 20px;
+}
+
+.existaccount p a{
+    font-size:15px;
+    text-decoration: none;
+    margin: 10px;
+
+}
+.existaccount p a:hover{
+    color:aquamarine;
+}
