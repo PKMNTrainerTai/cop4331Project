@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 import './SignUp.css'
 
 const SignUp = ({onSubmit}) => {
@@ -6,6 +7,7 @@ const SignUp = ({onSubmit}) => {
     const [password, setPassword]= useState('');
     const [email, setEmail]= useState('');
     const [error, setError]= useState('');
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
     const handleUsernameChange =(e)=>{
@@ -17,6 +19,10 @@ const SignUp = ({onSubmit}) => {
     }
     const handleEmailChange=(e)=>{
         setEmail(e.target.value);
+    }
+    const handleSignInClick =(e)=>{
+        navigate('/login');
+
     }
     const handleFormChange = async (e) => {
         e.preventDefault();
@@ -66,7 +72,7 @@ const SignUp = ({onSubmit}) => {
 
                 <button type='submit'>Sign Up</button>
 
-                <div className="existaccount"><p>Already have an account?<a href='#'>Sign In</a></p></div>
+                <div className="existaccount"><p>Already have an account?<a href='#' onClick={handleSignInClick}>Sign In</a></p></div>
             </form>
         </div>
 

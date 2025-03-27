@@ -1,11 +1,12 @@
 import React from 'react';
-import './Home.css'
+import './Home.css';
 
-const Home =()=>{
-    return(
-    <div>
-        <h1>ONE POUND FISH</h1>
-    </div>
-    )
-}
+const Home = () => {
+    return (
+        <div>
+            <h1>ONE POUND FISH</h1>
+        </div>
+    );
+};
+
 export default Home;
