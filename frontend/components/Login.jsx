@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
-import { account } from '../src/appwrite';
+import { GoogleLogin } from '@react-oauth/google';
+import {jwtDecode} from "jwt-decode";
 import './Login.css';
 import { FaLock } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
@@ -11,6 +12,7 @@ const Login = ({onSubmit}) => {
     const [username,setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const [message, setMessage] = useState('');
     const [error, setError] = useState('');
 
     const handleUsernameChange = (e) =>{
@@ -19,49 +21,48 @@ const Login = ({onSubmit}) => {
     const handlePasswordChange =(e)=>{
         setPassword(e.target.value);
     }
+    const handleForgotPasswordClick = () => {
+        navigate('/forgot-password');
+    };
+
+    const handleSignUpClick = () => {
+        navigate('/signup'); 
+    };
     
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-    
+        console.log('Username:', username);  // Ensure this logs correctly
+        console.log('Password:', password);
+
         try {
-          const response = await fetch('http://localhost:5000/api/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username, password }),
-          });
-    
-          const data = await response.json();
-    
-          if (response.ok) {
-            
-            console.log('Login successful', data);
-            onSubmit(data);
-            navigate('/home');
-            
-          } else {
-            
-            setError(data.error || 'Login failed!');
-            console.log('Login failed', data);
-          }
+            const response = await fetch('http://localhost:5000/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+                credentials: 'include', // Ensure cookies are included in the request
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                if (response.status === 401) {
+                    setMessage("Username/Password combination incorrect");
+                } else if (response.status === 403) {
+                    setMessage("Please verify your email to log in");
+                } else {
+                    setMessage(data.error || 'Login failed!');
+                }
+            } else {
+                // If login is successful
+                if (onSubmit) onSubmit(data);
+                setTimeout(() => navigate('/home'), 100);
+            }
         } catch (error) {
-          setError('An error occurred');
-          console.error('Error:', error);
+            setMessage('An error occurred during login');
+            console.error('Error:', error);
         }
-     }
-
-     const handleOAuthLogin = (provider) => {
-        account.createOAuth2Session(
-          provider, 
-          'http://localhost:5173/home', // Redirect URL on success (frontend port)
-          'http://localhost:5173/login' // Redirect URL on failure (frontend port)
-        ).then(() => {
-          navigate('/home'); // Navigate to home after successful OAuth login
-        }).catch((error) => {
-          console.error("OAuth login failed", error);
-        });
-
     };
 
   return (
@@ -82,20 +83,27 @@ const Login = ({onSubmit}) => {
 
             <div className='remember-forgot'>
                 <label><input type="checkbox" />Remember me</label>
-                <a href="">Forgot password?</a>
+                <a href="" onClick={handleForgotPasswordClick}>Forgot password?</a>
             </div>
 
             <div>
                 <button type="submit">Login</button>
             </div>
 
-            <div>
-                <button type="button" onClick={() => handleOAuthLogin('google')}>Login with Google</button>
-            </div>
+            <GoogleLogin
+                    onSuccess={(credentialResponse) => {
+                        console.log("Google OAuth Success:", credentialResponse);
+                        console.log(jwtDecode(credentialResponse.credential))
+                        navigate('/home'); // Navigate after successful login
+                    }}
+                    onError={() => console.log("Login Failed")}
+                />
 
             <div className="register-link">
-                <p>Don't have an account? <a href="#">Register</a></p>
+                <p>Don't have an account? <a href="#" onClick={handleSignUpClick}>Register</a></p>
             </div>
+
+            {message && <p className="error">{message}</p>}
 
         </form>
 
