@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
-import './SignUp.css'
+import '../css/SignUp.css'
 
 const SignUp = ({onSubmit}) => {
     const [username,setUsername]= useState('');
@@ -47,6 +47,9 @@ const SignUp = ({onSubmit}) => {
             if (response.ok) {
                 alert('Signup successful');
                 onSubmit(data); 
+                setTimeout(() => {
+                    navigate('/verify-email');
+                }, 1500);
             } else {
                 setError(data.error || 'Something went terribly wrong!');
             }

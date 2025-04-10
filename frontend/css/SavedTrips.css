@@ -1,0 +1,163 @@
+.saved-trips-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  .saved-trips-container h1 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+    text-align: center;
+  }
+  
+  .trips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .trip-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .trip-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  .trip-card-header {
+    padding: 1.5rem;
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .trip-card-header h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.5rem;
+  }
+  
+  .trip-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .trip-meta span {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+  }
+  
+  .trip-card-body {
+    padding: 1.5rem;
+  }
+  
+  .travel-group {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  
+  .created-date {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+  }
+  
+  .trip-card-actions {
+    padding: 0 1.5rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .view-button, .delete-button, .create-trip-button {
+    padding: 0.7rem 1.2rem;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s;
+  }
+  
+  .view-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    flex: 1;
+    margin-right: 0.5rem;
+  }
+  
+  .view-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .delete-button {
+    background-color: #fff;
+    color: #e74c3c;
+    border: 1px solid #e74c3c;
+    flex: 0.5;
+  }
+  
+  .delete-button:hover {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  .create-trip-button {
+    display: block;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    width: 200px;
+    margin: 0 auto;
+  }
+  
+  .create-trip-button:hover {
+    background-color: #27ae60;
+  }
+  
+  .empty-state {
+    text-align: center;
+  }
+  
+  .no-trips {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 3rem 2rem;
+    margin: 2rem auto;
+    max-width: 600px;
+  }
+  
+  .no-trips p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #7f8c8d;
+  }
+  
+  .no-trips .create-trip-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .trips-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .loading, .error {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+  }
+  
+  .error {
+    color: #e74c3c;
+  }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import {jwtDecode} from "jwt-decode";
-import './Login.css';
+import '../css/Login.css';
 import { FaLock } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
 
@@ -35,7 +35,7 @@ const Login = ({onSubmit}) => {
         console.log('Password:', password);
 
         try {
-            const response = await fetch('http://localhost:5000/api/login', {
+            const response = await fetch('http://localhost:5000/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ const Login = ({onSubmit}) => {
             } else {
                 // If login is successful
                 if (onSubmit) onSubmit(data);
-                setTimeout(() => navigate('/home'), 100);
+                setTimeout(() => navigate('/trip-planner'), 100);
             }
         } catch (error) {
             setMessage('An error occurred during login');
@@ -94,7 +94,7 @@ const Login = ({onSubmit}) => {
                     onSuccess={(credentialResponse) => {
                         console.log("Google OAuth Success:", credentialResponse);
                         console.log(jwtDecode(credentialResponse.credential))
-                        navigate('/home'); // Navigate after successful login
+                        navigate('/trip-planner'); 
                     }}
                     onError={() => console.log("Login Failed")}
                 />

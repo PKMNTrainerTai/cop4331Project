@@ -1,0 +1,204 @@
+.trip-details-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.trip-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.trip-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.trip-meta {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.trip-meta span {
+  background-color: #f1f5f9;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.trip-content {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2rem;
+}
+
+.sidebar {
+  background-color: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.accommodations-section h2, 
+.itinerary-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #334155;
+}
+
+.accommodations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.accommodation-card {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  /* New properties for clickable cards */
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.accommodation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.accommodation-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #1e293b;
+}
+
+.address {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+.accommodation-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.price {
+  color: #10b981;
+}
+
+.rating {
+  color: #f59e0b;
+}
+
+/* Book now badge */
+.book-now-badge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #3498db;
+  color: white;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.accommodation-card:hover .book-now-badge {
+  opacity: 1;
+}
+
+.day-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.day-tabs button {
+  padding: 0.6rem 1.2rem;
+  background-color: #f1f5f9;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.day-tabs button.active {
+  background-color: #3498db;
+  color: white;
+}
+
+.activities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.activity-card {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 1rem;
+  background-color: white;
+  padding: 1.2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.activity-time {
+  font-size: 0.9rem;
+  color: #64748b;
+  padding-top: 0.2rem;
+}
+
+.activity-content h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #1e293b;
+}
+
+.activity-content p {
+  font-size: 1rem;
+  color: #475569;
+  margin-bottom: 1rem;
+}
+
+.activity-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.duration {
+  color: #6366f1;
+}
+
+.cost {
+  color: #10b981;
+  font-weight: 500;
+}
+
+.loading, 
+.error {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+}
+
+.error {
+  color: #e74c3c;
+}

@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@google/generative-ai": "^0.24.0",
+    "@sendgrid/mail": "^8.1.5",
     "appwrite": "^17.0.1",
     "axios": "^1.8.4",
     "body-parser": "^1.20.3",
@@ -8,6 +10,7 @@
     "crypto": "^1.0.1",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "google-auth-library": "^9.15.1",
     "jsonwebtoken": "^9.0.2",
     "mailtrap": "^4.0.0",
     "mongodb": "^6.15.0",
