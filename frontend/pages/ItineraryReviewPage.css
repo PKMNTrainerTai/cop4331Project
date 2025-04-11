@@ -1,0 +1,73 @@
+.review-page-container {
+    padding: 1rem;
+    background-color: var(--background-color, #f4f7f6);
+    min-height: 100vh;
+}
+
+.review-header {
+    max-width: 900px;
+    margin: 1rem auto;
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--background-color-secondary, #fff);
+    color: var(--text-color, #333);
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.review-header h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: var(--heading-color, #333);
+}
+
+.review-header p {
+    margin-bottom: 0;
+    color: var(--text-color-secondary, #666);
+    font-size: 0.95rem;
+}
+
+.review-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem auto;
+    padding: 1rem;
+    max-width: 900px;
+}
+
+.review-actions .btn {
+    padding: 0.8rem 1.8rem;
+    font-size: 1.1rem;
+}
+
+.save-error {
+    color: #dc3545;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 0.75rem 1.25rem;
+    margin: 1rem auto;
+    max-width: 900px;
+    border-radius: 0.25rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Error for the whole page if data is missing */
+.review-page-container.error {
+    text-align: center;
+    padding-top: 5rem;
+    font-size: 1.2rem;
+    color: #dc3545;
+}
+
+@media (max-width: 600px) {
+    .review-actions {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .review-actions .btn {
+        width: 100%;
+    }
+}

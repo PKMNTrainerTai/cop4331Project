@@ -1,0 +1,293 @@
+/* Search Results Group */
+.search-results-group {
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.search-results-group label {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+/* Search Results List */
+.search-results-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-height: 150px;
+  /* Limit height and add scroll */
+  overflow-y: auto;
+}
+
+.result-item {
+  padding: 0.6rem 0.8rem;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+}
+
+.result-item:last-child {
+  border-bottom: none;
+}
+
+.result-item:hover {
+  background-color: #f0f0f0;
+}
+
+.result-item.selected {
+  background-color: #007bff;
+  /* Highlight selected item */
+  color: white;
+  font-weight: bold;
+}
+
+.result-item.selected:hover {
+  background-color: #0056b3;
+  /* Darker highlight on hover */
+}
+
+/* Map Group - Adjust label display slightly */
+.map-group label {
+  display: block;
+  /* Ensure label is block */
+}
+
+.create-trip-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+  /* Add padding top/bottom */
+  background-color: var(--background-color, #f4f7f6);
+  color: var(--text-color, #333);
+}
+
+.create-trip-form-wrapper {
+  background-color: var(--background-color-secondary, #f4f7f6);
+  color: var(--text-color, #333);
+  padding: 2rem 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  /* Allow form to be wider */
+  width: 100%;
+}
+
+.create-trip-form-wrapper h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--text-color, #333);
+  font-size: 1.8rem;
+}
+
+/* Reusable Form Group Styling */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: var(--text-color-secondary, #333);
+  font-size: 0.95rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="number"],
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.form-group input::placeholder {
+  color: #aaa;
+}
+
+/* Location Search Input Group */
+.location-search-group {
+  display: flex;
+  gap: 0.5rem;
+  /* Space between input and button */
+}
+
+.location-search-group input {
+  flex-grow: 1;
+  /* Input takes remaining space */
+}
+
+.location-search-group .search-button {
+  padding: 0.75rem 1rem;
+  flex-shrink: 0;
+  /* Prevent button from shrinking */
+  white-space: nowrap;
+  /* Prevent text wrapping */
+}
+
+/* Map Group and Container */
+.map-group {
+  margin-bottom: 1.5rem;
+  /* Consistent margin */
+}
+
+.map-container {
+  height: 300px;
+  /* Define height for the map */
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+  /* Space below label */
+  overflow: hidden;
+  /* Map stays within bounds */
+}
+
+/* Date Group Layout */
+.date-group {
+  display: flex;
+  gap: 1rem;
+  /* Space between date inputs */
+}
+
+.date-group>div {
+  flex: 1;
+  /* Each date input takes half the space */
+}
+
+/* Radio Button Group Styling */
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  /* Allow wrapping on smaller screens */
+  gap: 1rem;
+  /* Space between radio buttons */
+  padding-top: 0.3rem;
+}
+
+.radio-group label {
+  display: flex;
+  /* Align radio button and text */
+  align-items: center;
+  font-weight: normal;
+  /* Override bold label */
+  margin-bottom: 0;
+  /* Reset margin */
+  font-size: 0.9rem;
+  color: var(--text-color, #333);
+  cursor: pointer;
+}
+
+.radio-group input[type="radio"] {
+  margin-right: 0.5rem;
+  cursor: pointer;
+  /* Optional: Custom styling for radio */
+  accent-color: #007bff;
+  /* Modern browsers */
+}
+
+/* Error Message Styling */
+.error-message {
+  color: #dc3545;
+  /* Bootstrap danger color */
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  /* Space above error */
+  margin-bottom: 0;
+  /* Reset default paragraph margin */
+  border-radius: 0.25rem;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.error-message.search-error {
+  /* Specific margin for search error */
+  margin-top: 0.5rem;
+}
+
+.error-message.submit-error {
+  /* Specific margin for submit error */
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Form Actions (Cancel/Submit Buttons) */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  /* Align buttons to the right */
+  gap: 1rem;
+  /* Space between buttons */
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.form-actions .btn {
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+}
+
+/* Disabled button style */
+button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .create-trip-form-wrapper {
+    padding: 1.5rem;
+  }
+
+  .date-group {
+    flex-direction: column;
+    /* Stack date inputs vertically */
+    gap: 1.5rem;
+    /* Adjust gap for vertical stacking */
+  }
+
+  .radio-group {
+    flex-direction: column;
+    /* Stack radio buttons */
+    align-items: flex-start;
+    /* Align to left */
+    gap: 0.8rem;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+    /* Stack buttons, submit on bottom */
+  }
+
+  .form-actions .btn {
+    width: 100%;
+    /* Make buttons full width */
+  }
+
+  .location-search-group {
+    flex-direction: column;
+    /* Stack input and button */
+    gap: 0.8rem;
+  }
+
+  .location-search-group .search-button {
+    width: 100%;
+    /* Make button full width */
+  }
+
+  .map-container {
+    height: 250px;
+    /* Reduce map height on smaller screens */
+  }
+}

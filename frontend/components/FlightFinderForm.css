@@ -1,0 +1,79 @@
+.flight-finder-form {
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 1rem 0;
+}
+
+.flight-finder-form .form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.flight-finder-form .form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  font-size: 0.95rem;
+  color: var(--text-color-secondary, #555);
+}
+
+.flight-finder-form .form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color, #ccc);
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  background-color: var(--background-color-secondary, #fff);
+  color: var(--text-color, #333);
+}
+.flight-finder-form .form-group input::placeholder {
+    color: #aaa;
+    text-transform: none; /* Don't uppercase placeholder */
+}
+
+
+.flight-finder-form .helper-text {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-color-secondary, #888);
+  margin-top: -0.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.flight-finder-form .error-message.form-error {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
+  text-align: center; /* Center form-specific errors */
+}
+
+.flight-finder-form .find-flights-submit-btn {
+    width: 100%; /* Make button full width */
+    padding: 0.8rem;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+.flight-finder-form .flight-finder-actions {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.flight-finder-form .flight-finder-actions .btn {
+   width: 100%; /* Make buttons full width */
+   padding: 0.8rem;
+   font-size: 1.1rem;
+}
+
+.flight-finder-form .helper-text {
+    margin-bottom: 1.8rem;
+}

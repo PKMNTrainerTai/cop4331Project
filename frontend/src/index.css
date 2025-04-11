@@ -1,0 +1,201 @@
+@import url(https://fonts.bunny.net/css?family=inter:400,600);
+
+/* Sometimes you gotta */
+* {
+  font-family: 'Inter' !important;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  /* Apply base variables and transition */
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- Dark Mode Variables (Default) --- */
+:root {
+  --background-color: #1a1a1a;
+  /* Dark page background */
+  --background-color-secondary: #2c2c2c;
+  /* Dark Card/Modal backgrounds */
+  --text-color: #e0e0e0;
+  /* Light text */
+  --text-color-secondary: #b0b0b0;
+  /* Dimmer light text */
+  --heading-color: #ffffff;
+  /* White headings */
+  --heading-color-secondary: #cccccc;
+  /* Lighter grey headings */
+  --border-color: #444444;
+  /* Darker borders */
+  --border-color-soft: #383838;
+  /* Softer dark borders */
+  --link-color: #00b4ff;
+  /* Lighter blue link */
+  --link-hover-color: #00b4ff;
+  --button-primary-bg: #00b4ff;
+  /* Primary button background (light blue) */
+  --button-primary-text: #1a1a1a;
+  /* Primary button text (dark) */
+  --button-secondary-bg: #555555;
+  /* Secondary button background (dark grey) */
+  --button-secondary-text: #e0e0e0;
+  /* Secondary button text (light) */
+  --danger-color: #f5c6cb;
+  /* Danger text/borders (light red) */
+  --danger-bg: #5a2a2f;
+  /* Danger background (dark red) */
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  /* Darker shadow */
+  --input-bg: #333333;
+  /* Dark input background */
+  --input-border: #555555;
+  /* Dark input border */
+  --input-text: #e0e0e0;
+  /* Light input text */
+}
+
+/* --- Light Mode Variables (Applied when body has .dark-mode class... I'm sorry) --- */
+body.dark-mode {
+  --background-color: #f4f7f6;
+  /* Lightest page background */
+  --background-color-secondary: #ffffff;
+  /* Card/Modal backgrounds */
+  --text-color: #333333;
+  /* Primary text */
+  --text-color-secondary: #666666;
+  /* Subdued text, labels */
+  --heading-color: #222222;
+  /* Main headings */
+  --heading-color-secondary: #555555;
+  /* Sub-headings */
+  --border-color: #e0e0e0;
+  /* Standard borders */
+  --border-color-soft: #f0f0f0;
+  /* Lighter borders */
+  --link-color: #00b4ff;
+  /* Links */
+  --link-hover-color: #00b4ff;
+  --button-primary-bg: #00b4ff;
+  /* Primary button background */
+  --button-primary-text: #ffffff;
+  /* Primary button text */
+  --button-secondary-bg: #6c757d;
+  /* Secondary button background */
+  --button-secondary-text: #ffffff;
+  /* Secondary button text */
+  --danger-color: #dc3545;
+  /* Danger text/borders */
+  --danger-bg: #f8d7da;
+  /* Danger background */
+  --card-shadow: 0 2px 5px rgba(0, 0, 0, 0.07);
+  /* Consistent shadow */
+  --input-bg: #ffffff;
+  /* Input background */
+  --input-border: #ccc;
+  /* Input border */
+  --input-text: #333333;
+  /* Input text */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.btn-primary {
+  color: var(--button-primary-text);
+  background-color: var(--button-primary-bg);
+  border-color: var(--button-primary-bg);
+}
+
+.btn-primary:hover {
+  filter: brightness(90%);
+}
+
+.btn-secondary {
+  color: var(--button-secondary-text);
+  background-color: var(--button-secondary-bg);
+  border-color: var(--button-secondary-bg);
+}
+
+.btn-secondary:hover {
+  filter: brightness(90%);
+}
+
+.btn-danger {
+  color: var(--button-primary-text);
+  background-color: var(--danger-color);
+  border-color: var(--danger-color);
+}
+
+.btn-danger:hover {
+  filter: brightness(90%);
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+/* Style for the global back button */
+.btn-back {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1010;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  user-select: none;
+
+  background-color: var(--button-secondary-bg, #6c757d);
+  color: var(--button-secondary-text, #fff);
+  border-color: var(--button-secondary-bg, #6c757d);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.btn-back:hover {
+  background-color: var(--text-color-secondary, #5a6268);
+  border-color: var(--text-color-secondary, #545b62);
+  color: var(--button-secondary-text, #fff);
+  text-decoration: none;
+}

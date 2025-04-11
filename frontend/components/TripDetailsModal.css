@@ -1,0 +1,145 @@
+.modal-overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px);
+    padding: 1rem;
+}
+
+.modal-content {
+    background-color: var(--background-color-secondary, #fff);
+    color: var(--text-color, #333);
+    margin: auto;
+    padding: 25px 30px;
+    border: 1px solid var(--border-color, #ccc);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 950px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeInModal 0.3s ease-out;
+}
+
+@keyframes fadeInModal {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-close-button {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    z-index: 10;
+}
+
+.modal-close-button:hover,
+.modal-close-button:focus {
+    color: var(--text-color, black);
+    text-decoration: none;
+}
+
+.modal-trip-info h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--heading-color, #333);
+    text-align: center;
+    border-bottom: 1px solid var(--border-color-soft, #eee);
+    padding-bottom: 0.8rem;
+    font-size: 1.6rem;
+}
+
+.modal-trip-info p {
+    margin-bottom: 0.6rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-color-secondary, #555);
+}
+
+.modal-trip-info p strong {
+    color: var(--text-color, #333);
+    min-width: 90px;
+    /* Align keys slightly */
+    display: inline-block;
+    margin-right: 0.5em;
+}
+
+.created-date-modal {
+    font-size: 0.85rem !important;
+    color: #999 !important;
+    margin-top: 1rem;
+    text-align: right;
+}
+
+.modal-divider {
+    border: none;
+    border-top: 1px solid var(--border-color-soft, #eee);
+    margin: 1.5rem 0;
+}
+
+.modal-itinerary-section h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--heading-color-secondary, #444);
+    font-size: 1.4rem;
+}
+
+.modal-content .itinerary-display-container {
+    box-shadow: none;
+    padding: 0;
+    max-width: none;
+    margin: 0;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+/* Hide redundant stuff */
+.modal-content .itinerary-display-container>.itinerary-title,
+.modal-content .itinerary-display-container>.itinerary-location {
+    display: none;
+}
+
+.modal-content .itinerary-display-container .itinerary-section {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 1.5rem;
+}
+
+.modal-content .itinerary-display-container .daily-section .day-plan {
+    background-color: var(--background-color, #f8f8f8);
+    border: 1px solid var(--border-color-soft, #eee);
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.no-itinerary-message {
+    text-align: center;
+    font-style: italic;
+    color: var(--text-color-secondary, #777);
+    padding: 1rem 0;
+}

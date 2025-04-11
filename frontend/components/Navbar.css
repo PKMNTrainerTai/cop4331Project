@@ -1,0 +1,136 @@
+.global-navbar {
+  background-color: var(--background-color-secondary, #fff);
+  padding: 0.8rem 1.5rem;
+  box-shadow: var(--card-shadow, 0 2px 5px rgba(0, 0, 0, 0.1));
+  border-bottom: 1px solid var(--border-color, #eee);
+  color: var(--text-color, #333);
+  position: sticky;
+  top: 0;
+  z-index: 900;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.btn-back-nav {
+  padding: 0.3rem 0.6rem !important;
+  font-size: 0.9rem !important;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+
+/* Some of these aren't used anymore oops */
+.back-button-text {
+  margin-left: 0.3em;
+}
+
+@media (max-width: 480px) {
+  .back-button-text {
+    display: none;
+  }
+
+  .btn-back-nav {
+    padding: 0.3rem 0.5rem !important;
+  }
+}
+
+/* Logo styles */
+.navbar-logo {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+  /* Prevent logo shrinking */
+  margin-right: 10px;
+  padding-left: 50px;
+}
+
+.navbar-logo:hover {
+  opacity: 0.9;
+}
+
+.navbar-logo-img {
+  height: 20px;
+  width: auto;
+  vertical-align: middle;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-grow: 1;
+  justify-content: flex-start;
+  /* Keep links on left */
+}
+
+.nav-link {
+  color: var(--text-color-secondary, #555);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--link-hover-color, #0056b3);
+}
+
+.nav-link.active {
+  color: var(--link-color, #007bff);
+}
+
+.navbar-user-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .navbar-links {
+    order: 3;
+    /* Move links to the next line */
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border-color-soft, #eee);
+    gap: 1.2rem;
+  }
+
+  .navbar-user-actions {
+    order: 2;
+    /* Keep actions on the first line */
+  }
+
+  .navbar-logo {
+    order: 1;
+  }
+
+  .btn-back-nav {
+    order: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-links {
+    gap: 1rem;
+  }
+}
