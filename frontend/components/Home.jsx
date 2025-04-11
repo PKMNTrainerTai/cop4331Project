@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useOutletContext, useNavigate } from 'react-router-dom';
 import TripDetailsModal from './TripDetailsModal';
-import './Home.css';
+import '../css/Home.css';
 
 // Helper function to convert string to Title Case
 function toTitleCase(str) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import ItineraryDisplay from './ItineraryDisplay';
-import './TripDetailsModal.css';
+import '../css/TripDetailsModal.css';
 
 function TripDetailsModal({ tripData, onClose }) {
   // No tripData == no render

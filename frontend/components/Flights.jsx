@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, Link, useNavigate } from 'react-router-dom';
-import './Flights.css';
+import '../css/Flights.css';
 
 function Flights() {
   const { tripId } = useParams();

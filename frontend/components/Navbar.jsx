@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import './Navbar.css';
-import logoImage from './logo.png';
+import '../css/Navbar.css';
+import logoImage from '../src/assets/logo.png';
 
 // Receives logout handler function
 function Navbar({ handleLogout }) {

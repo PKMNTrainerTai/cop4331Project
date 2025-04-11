@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './Login.css'; // Ensure CSS is present
+import '../css/Login.css'; // Ensure CSS is present
 
 function Login() {
   const navigate = useNavigate();

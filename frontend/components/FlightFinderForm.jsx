@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './FlightFinderForm.css';
+import '../css/FlightFinderForm.css';
 
 function FlightFinderForm({ tripId }) {
   const navigate = useNavigate();

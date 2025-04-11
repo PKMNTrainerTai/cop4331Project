@@ -1,5 +1,5 @@
 import React from 'react';
-import './FlightResultsDisplay.css';
+import '../css/FlightResultsDisplay.css';
 
 // This component only receives flight data and renders it.
 function FlightResultsDisplay({ flightsData }) {

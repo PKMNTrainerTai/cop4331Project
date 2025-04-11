@@ -1,5 +1,5 @@
 import React from 'react';
-import './ItineraryDisplay.css';
+import '../css/ItineraryDisplay.css';
 
 function ItineraryDisplay({ itineraryData }) {
   if (!itineraryData) {
@@ -18,7 +18,19 @@ function ItineraryDisplay({ itineraryData }) {
     if (!address || address.toLowerCase() === 'tbd') return null;
     if (!address.match(/\d/)) return <p className="address-note">Address details unavailable.</p>;
     return <p className="address">📍 {address}</p>;
-  }
+  };
+
+  // Create booking link for hotels
+  const createHotelBookingLink = (hotel, destination) => {
+    // If coordinates are provided, use them for a more precise search
+    if (hotel.coordinates) {
+      return `https://www.google.com/travel/hotels/entity/${encodeURIComponent(hotel.coordinates)}`;
+    }
+    
+    // Otherwise, search by hotel name and location
+    const searchQuery = `${hotel.name} ${hotel.address || ''} ${destination || location}`;
+    return `https://www.google.com/travel/hotels/search?q=${encodeURIComponent(searchQuery)}`;
+  };
 
   // Render simple time slot activities
   const renderDayActivities = (dayData) => {
@@ -53,14 +65,21 @@ function ItineraryDisplay({ itineraryData }) {
           <h3>Hotel Recommendations</h3>
           <div className="card-grid">
             {hotels.map((hotel, index) => (
-              <div key={index} className="card hotel-card">
+              <a 
+                key={index} 
+                href={createHotelBookingLink(hotel)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card hotel-card clickable-hotel"
+              >
                 <h4>{hotel.name}</h4>
-                {renderAddress(hotel.address)} {/* Use renderAddress if hotels have it */}
-                <p className="description">{hotel.notes || hotel.description}</p> {/* Adapt field name */}
+                {renderAddress(hotel.address)}
+                <p className="description">{hotel.notes || hotel.description}</p>
                 {hotel.estimatedCostPerNight && <p className="cost">Est. ${hotel.estimatedCostPerNight}/night</p>}
-                {hotel.priceRange && !hotel.estimatedCostPerNight && <p className="cost">Price: {hotel.priceRange}</p>} {/* Show priceRange if cost is missing */}
-                {hotel.rating && <p className="rating">Rating: {hotel.rating} Stars</p>} {/* Show rating */}
-              </div>
+                {hotel.priceRange && !hotel.estimatedCostPerNight && <p className="cost">Price: {hotel.priceRange}</p>}
+                {hotel.rating && <p className="rating">Rating: {hotel.rating} Stars</p>}
+                <div className="book-now-badge">Book Now</div>
+              </a>
             ))}
           </div>
         </section>
