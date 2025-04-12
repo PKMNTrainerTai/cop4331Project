@@ -21,6 +21,7 @@
 - Node.js (v14 or higher)
 - MongoDB
 - Google Gemini API key
+- Google Oauth Client ID
 - SerpAPI key (for flight search)
 
 ### Installation
