@@ -1,7 +1,7 @@
 # cis4004Project
 # Travelite - A faster way to plan
 
-## Overview
+### Overview
 
 - This project is a comprehensive travel planning web application that allows users to generate custom trip itineraries and find flights for their destinations.
 
@@ -51,9 +51,9 @@ NODE_ENV=your_node_env
 
 3. Access the application at `http://localhost:5173`
 
-### Dependencies
+## Dependencies
 
-## Dev
+### Dev
  - vite @vitejs/plugin-react
  - eslint @eslint/js
  - eslint-plugin-react-hooks 
@@ -62,7 +62,7 @@ NODE_ENV=your_node_env
  - @types/react-dom 
  - globals
 
-## Frontend
+### Frontend
  - react 
  - react-dom 
  - react-router-dom 
@@ -72,7 +72,7 @@ NODE_ENV=your_node_env
  - js-cookie jwt-decode 
  - leaflet react-leaflet 
 
-## Backend
+### Backend
  - express 
  - cors 
  - dotenv 
