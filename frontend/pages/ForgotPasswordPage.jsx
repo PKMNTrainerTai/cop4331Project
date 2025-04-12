@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './AuthPages.css';
+import '../css/AuthPages.css';
 
 function ForgotPasswordPage() {
     const navigate = useNavigate();

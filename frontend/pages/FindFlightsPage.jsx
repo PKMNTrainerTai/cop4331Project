@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import FlightFinderForm from '../components/FlightFinderForm';
-import './FindFlightsPage.css';
+import '../css/FindFlightsPage.css';
 
 function FindFlightsPage() {
   const { tripId } = useParams();

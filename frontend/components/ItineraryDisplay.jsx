@@ -84,6 +84,7 @@ function ItineraryDisplay({ itineraryData }) {
           </div>
         </section>
       )}
+      
 
       {/* Daily Itinerary */}
       {Object.keys(itinerary).length > 0 && (
@@ -104,6 +105,7 @@ function ItineraryDisplay({ itineraryData }) {
           ))}
         </section>
       )}
+      
 
       {/* Budget Summary */}
       {Object.keys(budgetSummary).length > 0 && (

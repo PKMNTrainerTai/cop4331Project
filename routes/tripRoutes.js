@@ -1,23 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const { ObjectId } = require('mongodb');
-// Gemini is used in the generation route, passed via server.js
-// const { GoogleGenerativeAI } = require("@google/generative-ai"); // No longer needed here if passed
 const { authenticateMiddleware } = require('../middleware/middleware');
 
-module.exports = function(client, genAI) { // genAI instance is passed in
-  // Apply authentication middleware to all trip routes
+module.exports = function(client, genAI) { 
+  
   router.use(authenticateMiddleware);
 
-  // GET /api/trips - Get all trips for the logged-in user
   router.get('/', async (req, res) => {
     try {
       const db = client.db();
-      const userId = req.user.userId; // Get userId from authenticated request
+      const userId = req.user.userId; 
 
       const trips = await db.collection('trips')
-        .find({ userId: userId }) // Filter by userId
-        .sort({ createdAt: -1 }) // Sort by creation date, newest first
+        .find({ userId: userId }) 
+        .sort({ createdAt: -1 }) 
         .toArray();
 
       return res.json({
@@ -35,7 +32,6 @@ module.exports = function(client, genAI) { // genAI instance is passed in
     }
   });
 
-  // GET /api/trips/:tripId - Get details for a specific trip
   router.get('/:tripId', async (req, res) => {
     const { tripId } = req.params;
 
@@ -43,14 +39,13 @@ module.exports = function(client, genAI) { // genAI instance is passed in
       const db = client.db();
       const userId = req.user.userId;
 
-      // Validate tripId format before creating ObjectId
       if (!ObjectId.isValid(tripId)) {
           return res.status(400).json({ success: false, message: "Invalid Trip ID format" });
       }
 
       const trip = await db.collection('trips').findOne({
         _id: new ObjectId(tripId),
-        userId: userId // Ensure user owns the trip
+        userId: userId 
       });
 
       if (!trip) {
@@ -75,7 +70,6 @@ module.exports = function(client, genAI) { // genAI instance is passed in
     }
   });
 
-  // DELETE /api/trips/:tripId - Delete a specific trip
   router.delete('/:tripId', async (req, res) => {
     const { tripId } = req.params;
 
@@ -89,7 +83,7 @@ module.exports = function(client, genAI) { // genAI instance is passed in
 
       const result = await db.collection('trips').deleteOne({
         _id: new ObjectId(tripId),
-        userId: userId // Ensure user owns the trip
+        userId: userId 
       });
 
       if (result.deletedCount === 0) {
@@ -114,12 +108,10 @@ module.exports = function(client, genAI) { // genAI instance is passed in
     }
   });
 
-  // *** NEW: POST /api/trips - Create a new trip (initial save) ***
   router.post('/', async (req, res) => {
       const { name, location, startDate, endDate, partySize, budget, pace, durationDays } = req.body;
       const userId = req.user.userId;
 
-      // Basic validation
       if (!name || !location || !startDate || !endDate || !partySize || !budget || !pace || !durationDays) {
           return res.status(400).json({ success: false, message: "Missing required trip details for initial save." });
       }
@@ -129,15 +121,14 @@ module.exports = function(client, genAI) { // genAI instance is passed in
           const newTrip = {
               userId: userId,
               name,
-              location, // Assuming location is { name, lat, lng }
+              location, 
               startDate,
               endDate,
               partySize,
               budget,
               pace,
               durationDays,
-              generatedItinerary: null, // Itinerary added later
-              // airportCodes: null, // Optional: add later if needed
+              generatedItinerary: null,    
               createdAt: new Date()
           };
 
@@ -150,7 +141,7 @@ module.exports = function(client, genAI) { // genAI instance is passed in
           return res.status(201).json({
               success: true,
               message: "Trip created successfully",
-              tripId: result.insertedId // Return the new ID
+              tripId: result.insertedId 
           });
 
       } catch (error) {
@@ -163,11 +154,10 @@ module.exports = function(client, genAI) { // genAI instance is passed in
       }
   });
 
-
-  // *** NEW: POST /api/generate-itinerary/:tripId - Generate itinerary using Gemini ***
+  
   router.post('/generate-itinerary/:tripId', async (req, res) => {
       const { tripId } = req.params;
-      const { originAirport, returnAirport } = req.body; // Get airports from request body
+      const { originAirport, returnAirport } = req.body; 
       const userId = req.user.userId;
 
       if (!originAirport || !returnAirport) {
@@ -180,7 +170,6 @@ module.exports = function(client, genAI) { // genAI instance is passed in
       try {
           const db = client.db();
 
-          // 1. Fetch the base trip data saved earlier
           const baseTripData = await db.collection('trips').findOne({
               _id: new ObjectId(tripId),
               userId: userId
@@ -190,7 +179,6 @@ module.exports = function(client, genAI) { // genAI instance is passed in
               return res.status(404).json({ success: false, message: "Trip not found or access denied." });
           }
 
-          // 2. Construct the Gemini Prompt
           let partyDescription = "Just Me";
           if (baseTripData.partySize === 'couple') partyDescription = "a Couple (2 people)";
           else if (baseTripData.partySize === 'friends') partyDescription = "a Group of Friends";
@@ -213,15 +201,14 @@ module.exports = function(client, genAI) { // genAI instance is passed in
           The plan should be well-made... (rest of prompt instructions remain the same)
          `;
 
-          // 3. Call Gemini API
-          const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" }); // Use passed genAI instance
+          
+          const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
           const generationConfig = { temperature: 0.8, topP: 0.9, topK: 40, maxOutputTokens: 8192 };
-          // If using chat: const chatSession = model.startChat({ generationConfig }); const result = await chatSession.sendMessage(prompt);
-          const result = await model.generateContent(prompt); // Direct generation might be simpler here
+          const result = await model.generateContent(prompt);
           const response = result.response;
           const responseText = response.text();
 
-          // 4. Parse the response
+          
           let generatedItineraryJson = null;
           const jsonMatch = responseText.match(/```json\s*([\s\S]*?)\s*```/);
           if (jsonMatch && jsonMatch[1]) {
@@ -233,7 +220,7 @@ module.exports = function(client, genAI) { // genAI instance is passed in
              throw new Error("Parsed Gemini response is not a valid JSON object.");
           }
 
-          // 5. Return the generated itinerary to the frontend
+          
           return res.json({
               success: true,
               itineraryData: generatedItineraryJson
@@ -250,10 +237,11 @@ module.exports = function(client, genAI) { // genAI instance is passed in
   });
 
 
-  // *** NEW: PUT /api/trips/:tripId/itinerary - Update trip with generated itinerary ***
+
+
   router.put('/:tripId/itinerary', async (req, res) => {
       const { tripId } = req.params;
-      const { itinerary } = req.body; // Expect itinerary object in the body
+      const { itinerary } = req.body;
       const userId = req.user.userId;
 
       if (!itinerary || typeof itinerary !== 'object') {
@@ -267,18 +255,15 @@ module.exports = function(client, genAI) { // genAI instance is passed in
           const db = client.db();
 
           const result = await db.collection('trips').updateOne(
-              { _id: new ObjectId(tripId), userId: userId }, // Match trip ID and ensure user owns it
-              { $set: { generatedItinerary: itinerary, updatedAt: new Date() } } // Add/Update the itinerary field
+              { _id: new ObjectId(tripId), userId: userId }, 
+              { $set: { generatedItinerary: itinerary, updatedAt: new Date() } }
           );
 
           if (result.matchedCount === 0) {
               return res.status(404).json({ success: false, message: "Trip not found or access denied." });
           }
           if (result.modifiedCount === 0) {
-              // This might happen if the itinerary sent is identical to what's already there
               console.warn(`Trip ${tripId} itinerary update resulted in no changes.`);
-             // Still return success as the desired state is achieved
-             // return res.status(400).json({ success: false, message: "Itinerary update failed or no changes made." });
           }
 
           return res.json({
@@ -296,9 +281,6 @@ module.exports = function(client, genAI) { // genAI instance is passed in
       }
   });
 
-
-  // REMOVE the old /generate-trip-test route as it's replaced by the multi-step flow
-  // router.post('/generate-trip-test', async (req, res) => { ... });
 
   return router;
 };

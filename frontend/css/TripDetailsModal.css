@@ -117,7 +117,6 @@
     border-radius: 0;
 }
 
-/* Hide redundant stuff */
 .modal-content .itinerary-display-container>.itinerary-title,
 .modal-content .itinerary-display-container>.itinerary-location {
     display: none;

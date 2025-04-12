@@ -4,6 +4,7 @@
     "@sendgrid/mail": "^8.1.5",
     "appwrite": "^17.0.1",
     "axios": "^1.8.4",
+    "bcryptjs": "^3.0.2",
     "body-parser": "^1.20.3",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",

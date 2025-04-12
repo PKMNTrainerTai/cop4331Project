@@ -8,7 +8,7 @@ const MongoClient = require('mongodb').MongoClient;
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 

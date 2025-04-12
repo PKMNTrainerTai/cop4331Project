@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import './AuthPages.css';
+import '../css/AuthPages.css';
 
 function ResetPasswordPage() {
     const { token } = useParams(); // Get token from URL

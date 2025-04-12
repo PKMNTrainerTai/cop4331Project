@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../css/Login.css'; // Ensure CSS is present
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode';
+import '../css/Login.css';
 
 function Login() {
   const navigate = useNavigate();
@@ -10,7 +12,7 @@ function Login() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setError(''); // Clear error on change
+    setError(''); 
   };
 
   const handleSubmit = async (e) => {
@@ -28,7 +30,6 @@ function Login() {
       const response = await fetch('http://localhost:5000/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        // Needed for cookies or death happens
         credentials: 'include',
         body: JSON.stringify(formData),
       });
@@ -36,17 +37,50 @@ function Login() {
       const data = await response.json();
 
       if (!response.ok) {
-        // Use error message from backend if available
+        
         throw new Error(data.error || `HTTP error! status: ${response.status}`);
       }
 
       console.log('Login successful:', data);
-      // Handle successful login, redirect to home page
       navigate('/home');
 
     } catch (err) {
       console.error('Login failed:', err);
       setError(err.message || 'Login failed. Please check your credentials.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      setIsLoading(true);
+      console.log("Google OAuth Success:", credentialResponse);
+      
+      const userInfo = jwtDecode(credentialResponse.credential);
+      console.log("Google user info:", userInfo);
+      
+      const response = await fetch('http://localhost:5000/api/auth/google-login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({ credential: credentialResponse.credential }),
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Google login failed');
+      }
+      
+      console.log('Google login successful:', data);
+      navigate('/home');
+      
+    } catch (err) {
+      console.error('Google login failed:', err);
+      setError(err.message || 'Google login failed. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -88,6 +122,24 @@ function Login() {
             {isLoading ? 'Signing In...' : 'Sign In'}
           </button>
         </form>
+
+        <div className="or-divider">
+          <span>OR</span>
+        </div>
+
+        <div className="google-login-container">
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={() => {
+              console.log("Google Login Failed");
+              setError("Google login failed. Please try again.");
+            }}
+            useOneTap
+            theme="filled_blue"
+            text="signin_with"
+            shape="rectangular"
+          />
+        </div>
 
         <div className="login-links">
           <Link to="/forgot-password">Forgot Password?</Link>
